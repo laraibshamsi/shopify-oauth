@@ -17,11 +17,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/auth", (req, res) => {
+  const shop = "longivitate.myshopify.com"; // 👈 REQUIRED
+  const scopes = "read_products,read_inventory,write_inventory";
+
   const authUrl =
-    `https://${SHOP}/admin/oauth/authorize` +
+    `https://${shop}/admin/oauth/authorize` +
     `?client_id=${CLIENT_ID}` +
-    `&scope=${SCOPES}` +
-    `&redirect_uri=${REDIRECT_URI}`;
+    `&scope=${scopes}` +
+    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
+    `&state=nonce`;
 
   res.redirect(authUrl);
 });
@@ -61,6 +65,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
+
 
 
 
