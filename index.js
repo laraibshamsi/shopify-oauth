@@ -31,15 +31,15 @@ app.get("/auth", (req, res) => {
 });
 
 app.get("/callback", async (req, res) => {
-  const code = req.query.code;
+  const { code, shop } = req.query;
 
-  if (!code) {
-    return res.send("Missing authorization code");
+  if (!code || !shop) {
+    return res.send("Authorization code or shop missing");
   }
 
   try {
-    const tokenResponse = await axios.post(
-      `https://${SHOP}/admin/oauth/access_token`,
+    const tokenRes = await axios.post(
+      `https://${shop}/admin/oauth/access_token`,
       {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
@@ -47,17 +47,13 @@ app.get("/callback", async (req, res) => {
       }
     );
 
-    const accessToken = tokenResponse.data.access_token;
-
     res.send(`
       <h2>OAuth Successful ✅</h2>
-      <p><strong>Access Token (valid 24 hours):</strong></p>
-      <textarea rows="5" cols="80">${accessToken}</textarea>
-      <p>Copy this token and use it for GraphQL / REST calls.</p>
+      <pre>${tokenRes.data.access_token}</pre>
     `);
-  } catch (err) {
-    console.error(err.response?.data || err.message);
-    res.send("OAuth failed. Check server logs.");
+  } catch (e) {
+    console.error(e.response?.data || e.message);
+    res.send("OAuth failed at token step");
   }
 });
 
@@ -65,6 +61,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
+
 
 
 
