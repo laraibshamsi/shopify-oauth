@@ -7,7 +7,7 @@ const app = express();
 const SHOP = "longivitate.myshopify.com";
 const CLIENT_ID = "eee6afe3a382bdc3eb1e49978bd50828";
 const CLIENT_SECRET = "3f532f5795070f54a2ef833bd26ad647";
-const REDIRECT_URI = "https://YOUR_DOMAIN/callback";
+const REDIRECT_URI = "https://shopify-oauth.onrender.com/callback";
 /* 🔴 END */
 
 const SCOPES = "read_products,read_inventory";
@@ -61,4 +61,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
+
 
