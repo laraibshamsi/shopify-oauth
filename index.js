@@ -5,8 +5,8 @@ const app = express();
 
 /* 🔴 EDIT THESE VALUES */
 const SHOP = "longivitate.myshopify.com";
-const CLIENT_ID = "PASTE_CLIENT_ID_HERE";
-const CLIENT_SECRET = "PASTE_CLIENT_SECRET_HERE";
+const CLIENT_ID = "eee6afe3a382bdc3eb1e49978bd50828";
+const CLIENT_SECRET = "3f532f5795070f54a2ef833bd26ad647";
 const REDIRECT_URI = "https://YOUR_DOMAIN/callback";
 /* 🔴 END */
 
@@ -61,3 +61,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
+
