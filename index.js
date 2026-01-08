@@ -4,7 +4,7 @@ import axios from "axios";
 const app = express();
 
 /* 🔴 EDIT THESE VALUES */
-const SHOP = "longivitate.myshopify.com";
+const SHOP = ".myshopify.com";
 const CLIENT_ID = "";
 const CLIENT_SECRET = "";
 const REDIRECT_URI = "https://shopify-oauth.onrender.com/callback";
@@ -61,6 +61,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
+
 
 
 
